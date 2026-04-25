@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Smart Campus</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <i class="ph ph-bank header-logo"></i>
+                <span class="header-title">Smart Campus</span>
+            </div>
+            <nav class="header-nav">
+                <a href="ETNOpro.html" class="nav-link">Home</a>
+                <a href="bookings.html" class="nav-link">My Bookings</a>
+                <a href="profile.html" class="nav-link active">Profile</a>
+            </nav>
+            <div class="header-right">
+                <a href="index.html" class="btn-logout" style="display:inline-block; text-align:center;">Logout</a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main" style="display: block; max-width: 600px;">
+            <div class="card" style="padding: 32px; text-align: center;">
+                <div style="width: 80px; height: 80px; background-color: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 16px auto;">
+                    <i class="ph ph-user"></i>
+                </div>
+                <h2>Admin User</h2>
+                <p style="color: var(--text-muted); margin-bottom: 24px;">admin@smartcampus.edu</p>
+                
+                <div style="text-align: left; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                    <div class="form-group">
+                        <label>Role</label>
+                        <p style="font-weight: 500;">Administrator</p>
+                    </div>
+                    <div class="form-group" style="margin-top: 16px;">
+                        <label>Department</label>
+                        <p style="font-weight: 500;">Facilities Management</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

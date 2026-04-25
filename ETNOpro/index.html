@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Smart Campus</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- Using Phosphor Icons as they look very similar to the ones in the screenshot -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <i class="ph ph-bank logo-icon"></i>
+                <h1 class="login-title">Smart Campus</h1>
+                <p class="login-subtitle">Resource Booking & Utilization System</p>
+            </div>
+            
+            <div class="login-form-container">
+                <h2 class="form-title">Login to Your Account</h2>
+                
+                <!-- Frontend Server Link: http://127.0.0.1:8000 -->
+                
+                <form id="loginForm" class="login-form">
+                    <div class="input-group">
+                        <i class="ph ph-user input-icon"></i>
+                        <input type="text" placeholder="admin" value="admin" class="input-field with-icon" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="ph ph-lock input-icon"></i>
+                        <input type="password" placeholder="••••" value="admin" class="input-field with-icon" required>
+                    </div>
+                    <button type="submit" class="btn-primary login-btn">Login</button>
+                </form>
+                <p class="register-link">
+                    Don't have an account? <a href="#">Register here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            // Since this is a standalone frontend, we call the API
+            const response = await fetch('http://127.0.0.1:3000/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: 'admin', password: 'password' })
+            });
+            if(response.ok) {
+                window.location.href = 'ETNOpro.html';
+            } else {
+                // Navigate anyway for demonstration
+                window.location.href = 'ETNOpro.html';
+            }
+        });
+    </script>
+</body>
+</html>

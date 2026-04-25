@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Smart Campus</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <i class="ph ph-bank header-logo"></i>
+                <span class="header-title">Smart Campus</span>
+            </div>
+            <nav class="header-nav">
+                <a href="ETNOpro.html" class="nav-link active">Home</a>
+                <a href="bookings.html" class="nav-link">My Bookings</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+            </nav>
+            <div class="header-right">
+                <a href="index.html" class="btn-logout" style="display:inline-block; text-align:center;">Logout</a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            
+            <!-- Left Column: Book a Resource -->
+            <div class="booking-section">
+                <h2 class="section-title">Book a Resource</h2>
+                <div class="card booking-card">
+                    <form id="bookingForm" onsubmit="handleBook(event)">
+                        <div class="form-group">
+                            <label>Select Resource</label>
+                            <select class="input-field select-field">
+                                <option>Lab 1</option>
+                                <option>Seminar Hall</option>
+                                <option>Projector A</option>
+                                <option>Lab 2</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Select Date</label>
+                            <div class="input-icon-wrapper">
+                                <input type="text" class="input-field" value="25/04/2025" style="padding-right: 36px;">
+                                <i class="ph ph-calendar-blank icon-right"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Start Time</label>
+                            <select class="input-field select-field">
+                                <option>10:00 AM</option>
+                                <option>11:00 AM</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>End Time</label>
+                            <select class="input-field select-field">
+                                <option>11:00 AM</option>
+                                <option>12:00 PM</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-book">Book Now</button>
+                    </form>
+
+                    <div id="successMessage" class="success-message" style="display: none;">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <span>Booking Successful! Your resource has been booked.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Available Resources -->
+            <div class="resources-section">
+                <h2 class="section-title">Available Resources</h2>
+                <div class="resources-list">
+                    <!-- Resource 1 -->
+                    <div class="card resource-card">
+                        <div class="resource-info">
+                            <h3 class="resource-name">Lab 1</h3>
+                            <p class="resource-detail">Type: Lab</p>
+                            <p class="resource-detail">Capacity: 30</p>
+                        </div>
+                        <div class="resource-status">
+                            <span class="badge-available">Available</span>
+                        </div>
+                    </div>
+                    <!-- Resource 2 -->
+                    <div class="card resource-card">
+                        <div class="resource-info">
+                            <h3 class="resource-name">Seminar Hall</h3>
+                            <p class="resource-detail">Type: Hall</p>
+                            <p class="resource-detail">Capacity: 100</p>
+                        </div>
+                        <div class="resource-status">
+                            <span class="badge-available">Available</span>
+                        </div>
+                    </div>
+                    <!-- Resource 3 -->
+                    <div class="card resource-card">
+                        <div class="resource-info">
+                            <h3 class="resource-name">Projector A</h3>
+                            <p class="resource-detail">Type: Equipment</p>
+                        </div>
+                        <div class="resource-status">
+                            <span class="badge-available">Available</span>
+                        </div>
+                    </div>
+                    <!-- Resource 4 -->
+                    <div class="card resource-card">
+                        <div class="resource-info">
+                            <h3 class="resource-name">Lab 2</h3>
+                            <p class="resource-detail">Type: Lab</p>
+                            <p class="resource-detail">Capacity: 25</p>
+                        </div>
+                        <div class="resource-status">
+                            <span class="badge-available">Available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        function handleBook(e) {
+            e.preventDefault();
+            
+            const resource = document.querySelector('.select-field').value;
+            
+            fetch('http://127.0.0.1:3000/api/book', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ resource_id: resource, date: '25/04/2025', start_time: '10:00 AM' })
+            }).then(() => {
+                const msg = document.getElementById('successMessage');
+                msg.style.display = 'flex';
+                setTimeout(() => {
+                    msg.style.display = 'none';
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>
